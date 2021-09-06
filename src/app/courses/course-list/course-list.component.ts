@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from 'src/app/course.service';
+import { Course } from '../course';
 
 @Component({
   selector: 'app-course-list',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  courses : Course[] = [];
+  
+  _filterBy!: string;
+  
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
+    this.courses = this.courseService.retrieveAll();
+  }
+
+  set filter(value: string){
+    this._filterBy = value;
+  }
+
+  get filter(){
+    return this._filterBy;
   }
 
 }
