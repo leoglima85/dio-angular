@@ -10,11 +10,11 @@ import { Course } from '../course';
 })
 export class CourseInfoComponent implements OnInit {
 
-   course: Course = new Course; 
+   course: Course = new Course ; 
   constructor( private activatedRoute: ActivatedRoute, private courseService: CourseService) { }
 
   ngOnInit(): void {
-    this.course = this.activatedRoute.snapshot.params['id'];
+    this.course = this.courseService.retrieveById(+this.activatedRoute.snapshot.params['id']);
   }
 
 }

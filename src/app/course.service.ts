@@ -12,15 +12,16 @@ export class CourseService {
     return COURSES;
   }
 
-  retrieveById(id: number) {
-    return COURSES.find((courseIterator: Course) => courseIterator.id === id);
+  retrieveById(id: number): Course {
+    return COURSES[1];
+    //.find((courseIterator: Course) => courseIterator.id === id)
   }
 
 }
 
 var COURSES: Course[] = [
   {
-    id: 1,
+    id: 0,
     name: 'Angular: CLI',
     description: 'Neste curso, os alunos irão obter um grande conhecimento nos principais recursos do CLI.',
     duration: 120,

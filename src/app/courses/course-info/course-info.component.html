@@ -1,2 +1,8 @@
 <p>course-info works!</p>
-<h2>Curso ID = {{ course }}</h2>
+<h2>Curso ID = {{ course.id }}</h2>
+<h3>Curso Nome = {{ course.name }}</h3>
+<h3>Curso Descrição = {{ course.description }}</h3>
+<h3>Curso Preço = {{ course.price }}</h3>
+<h3>Curso Codigo = {{ course.code }}</h3>
+<h3>Curso Avalicação = {{ course.rating }}</h3>
+<input [(ngModel)]="course.name" name="nome" #course.name="ngModel" class="form-control">
