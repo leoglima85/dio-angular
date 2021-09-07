@@ -5,7 +5,7 @@ import { Course } from './courses/course';
   providedIn: 'root'
 })
 export class CourseService {
-
+  
   constructor() { }
 
   retrieveAll(): Course[]{
@@ -13,15 +13,15 @@ export class CourseService {
   }
 
   retrieveById(id: number): Course {
-    return COURSES[1];
-    //.find((courseIterator: Course) => courseIterator.id === id)
+     return COURSES.find((courseIterator: Course) => courseIterator.id === id);
+    
   }
 
 }
 
 var COURSES: Course[] = [
   {
-    id: 0,
+    id: 1,
     name: 'Angular: CLI',
     description: 'Neste curso, os alunos irão obter um grande conhecimento nos principais recursos do CLI.',
     duration: 120,

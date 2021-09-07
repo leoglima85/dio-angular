@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/course.service';
 import { Course } from '../course';
 
+
 @Component({
   selector: 'app-course-info',
   templateUrl: './course-info.component.html',
@@ -10,7 +11,7 @@ import { Course } from '../course';
 })
 export class CourseInfoComponent implements OnInit {
 
-   course: Course = new Course ; 
+   course!: Course ; 
   constructor( private activatedRoute: ActivatedRoute, private courseService: CourseService) { }
 
   ngOnInit(): void {
