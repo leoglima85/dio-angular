@@ -11,11 +11,15 @@ import { Course } from '../course';
 })
 export class CourseInfoComponent implements OnInit {
 
-   course!: Course ; 
+   course: Course  ; 
   constructor( private activatedRoute: ActivatedRoute, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.course = this.courseService.retrieveById(+this.activatedRoute.snapshot.params['id']);
+  }
+
+  save(): void {
+    this.courseService.save(this.course);
   }
 
 }
