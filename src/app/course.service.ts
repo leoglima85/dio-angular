@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Course } from './courses/course';
 
 @Injectable({
@@ -6,77 +8,28 @@ import { Course } from './courses/course';
 })
 export class CourseService {
   
-  //constructor() { }
+  private courseUrl: string = 'http://localhost:3100/api/courses'
 
-  retrieveAll(): Course[]{
-    return COURSES;
+  constructor(private HttpClient: HttpClient) { }
+  
+  retrieveAll(): Observable<Course[]>{
+    return this.HttpClient.get<Course[]>(this.courseUrl);
   }
 
-  retrieveById(id: number): Course {
-     return COURSES.find((courseIterator: Course) => courseIterator.id === id);
+  retrieveById(id: number): Observable<Course> {
+     return this.HttpClient.get<Course>(`${this.courseUrl}/${id}`);
     
   }
 
-  save(course: Course): void {
+  save(course: Course): Observable<Course> {
     if (course.id) {
-      const index = COURSES.findIndex((courseIterator: Course) => courseIterator.id === course.id);
-      COURSES[index] = course;
+      return this.HttpClient.put<Course>(`${this.courseUrl}/${course.id}`, course);
+    } else {
+      return this.HttpClient.post<Course>(`${this.courseUrl}`, course);
     }
   } 
 
+  deleteById(id: number): Observable<any>{
+    return this.HttpClient.delete<any>(`${this.courseUrl}/${id}`);
+  }
 }
-
-var COURSES: Course[] = [
-  {
-    id: 1,
-    name: 'Angular: CLI',
-    description: 'Neste curso, os alunos irão obter um grande conhecimento nos principais recursos do CLI.',
-    duration: 120,
-    code: 'XLF-1212',
-    rating: 3,
-    price: 12.99,
-    imageUrl: '/assets/images/cli.png',
-},
-{
-    id: 2,
-    name: 'Angular: Forms',
-    description: 'Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis no módulo de Forms.',
-    duration: 80,
-    code: 'DWQ-3412',
-    rating: 3.5,
-    price: 24.99,
-    imageUrl: '/assets/images/forms.png',
-},
-{
-    id: 3,
-    name: 'Angular: HTTP',
-    description: 'Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis no módulo de HTTP.',
-    duration: 80,
-    code: 'QPL-0913',
-    rating: 4.0,
-    price: 36.99,
-    imageUrl: '/assets/images/http.png',
-},
-{
-    id: 4,
-    name: 'Angular: Router',
-    description: 'Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis no módulo de Router.',
-    duration: 80,
-    code: 'OHP-1095',
-    rating: 4.5,
-    price: 46.99,
-    imageUrl: '/assets/images/router.png',
-},
-{
-    id: 5,
-    name: 'Angular: Animations',
-    description: 'Neste curso, os alunos irão obter um conhecimento aprofundado sobre os recursos disponíveis sobre Animation.',
-    duration: 80,
-    code: 'PWY-9381',
-    rating: 5,
-    price: 56.99,
-    imageUrl: '/assets/images/animations.png',
-}
-]
-    
-

@@ -1,5 +1,5 @@
 <h2>Informação do Curso!</h2>
-<form #courseForm="ngForm">
+<form #courseForm="ngForm" *ngIf="course">
     <h2>Curso ID = {{ course.id }}</h2>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Nome:</label>
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <button [routerLink]="['/']" class="btn btn-outline-danger">Cancelar</button>
-    <button [routerLink]="['/']" [disabled]="courseForm.invalid" (click)="save" class="btn btn-outline-primary">Salvar</button>
+    <button [routerLink]="['/cursos']" class="btn btn-outline-danger">Cancelar</button>
+    <button  [disabled]="courseForm.invalid" (click)="save()" [routerLink]="['/']" class="btn btn-outline-primary">Salvar</button>
     
 </form>

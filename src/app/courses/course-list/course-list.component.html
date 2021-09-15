@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let course of courses">
+        <tr *ngFor="let course of filteredCourses">
             <td>{{course.id}}</td>
             <td>{{course.name}}</td>
             <td><img [src]="course.imageUrl" width="20" height="20"></td>
@@ -30,7 +30,10 @@
             <td>{{course.code | lowercase}}</td>
             <td>{{course.duration}}</td>
             <td> <app-star [rating]="course.rating"> </app-star></td>
-            <td> <a [routerLink]="['/cursos/info', course.id]" class="btn btn-primary">Editar</a> </td>
+            <td>
+                 <a [routerLink]="['/cursos/info', course.id]" class="btn btn-primary mr-2">Editar</a> 
+                 <button (click)="deleteById(course.id)" class="btn btn-danger">Deletar</button>
+            </td>
        </tr>
     </tbody>
 </table>
