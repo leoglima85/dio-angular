@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CourseInfoComponent } from './courses/course-info/course-info.component';
 import { CourseListComponent } from './courses/course-list/course-list.component';
-import { Erro404Component } from './erro404/erro404.component';
+import { Erro404Component } from './core/component/erro404/erro404.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'cursos', pathMatch: 'full' },
